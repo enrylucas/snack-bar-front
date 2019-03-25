@@ -1,0 +1,36 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+
+.text-secondary{
+    color: #9370d8 !important;
+}
+
+.bg-secondary{
+    background-color: #6b44b8 !important;
+}
+
+.bg-primary{
+    background-color: #e2d7f8 !important;
+}
+
+.text-primary {
+    color: black !important;
+    letter-spacing: .05em!important;
+    text-shadow: 2px 2px 0px #d5d5d5, 5px 5px 0px rgba(0, 0, 0, 0.1)!important;
+  }
+
+  .h1:hover{
+      cursor: pointer;
+  }
+
+  .bg-repeat{
+      background-repeat: repeat;
+      background-image: url("assets/burger-bg.jpg");
+      background-size: 20%;
+  }
+
+  body{
+      height: 100vh;
+      margin: 0;
+  }
