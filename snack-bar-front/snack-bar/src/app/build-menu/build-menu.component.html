@@ -1,3 +1,16 @@
-<p>
-  build-menu works!
-</p>
+<div class="bg-primary border border-secondary border-circle m-2">
+  <h2 class="text-center text-secondary">Monte seu lanche!</h2>
+  <div *ngFor="let ingredient of ingredients, let i = index" class="m-3">
+    <span>{{ingredient.name}}</span>
+    <span class="float-right">
+      <button class="btn-xs bg-secondary rounded-circle mr-1" (click)="incrementButton(i)">+</button>
+      <span>{{ingredientCounters[i]}}</span>
+      <button class="btn-xs bg-secondary rounded-circle ml-1" (click)="decrementButton(i)">-</button>
+    </span>
+  </div>
+  <div class="border-top m-1 text-center">
+    <div>Total: R${{getPrice()}}</div>
+    <button class="bg-secondary rounded">Comprar</button>
+  </div>
+</div>
+<button class="bg-secondary btn-lg btn-block my-3" routerLink="/choiceView">Voltar</button>

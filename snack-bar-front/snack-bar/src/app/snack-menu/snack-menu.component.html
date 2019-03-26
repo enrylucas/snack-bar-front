@@ -1,3 +1,15 @@
-<p>
-  snack-menu works!
-</p>
+<div class="bg-primary border border-secondary border-circle m-2">
+    <h2 class="text-center text-secondary">Escolha seu pedido!</h2>
+  <div *ngFor="let food of foods">
+    <div class="p-2 border ">
+      <span>{{food.name}} - ( </span>
+      <span *ngFor="let ingredient of food.ingredients">{{ingredient.name}} </span>
+      <span>)</span>
+      <span class="float-right pl-2">
+        <span class="pr-1">R${{getPrice(food)}}</span>
+        <button class="bg-secondary rounded">Comprar</button>
+      </span>
+    </div>
+  </div>
+</div>
+<button class="bg-secondary btn-lg btn-block my-3" routerLink="/choiceView" >Voltar</button>

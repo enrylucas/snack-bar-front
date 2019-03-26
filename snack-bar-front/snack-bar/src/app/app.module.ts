@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { ChoiceViewComponent } from './choice-view/choice-view.component';
 import { SnackMenuComponent } from './snack-menu/snack-menu.component';
 import { BuildMenuComponent } from './build-menu/build-menu.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { BuildMenuComponent } from './build-menu/build-menu.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppService } from '../app.service';
 
 @Component({
   selector: 'app-choice-view',
@@ -6,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChoiceViewComponent implements OnInit {
 
-  constructor() { }
+  constructor(private appService: AppService) { }
+
+  public ingredients: Ingredient[] = [];
 
   ngOnInit() {
+    this.appService.getIngredients().subscribe( resp => {
+      resp['content'].forEach(i => {this.ingredients.push(i)});
+    }, error => console.log("Error on getting ingredients."));
   }
 
 }
