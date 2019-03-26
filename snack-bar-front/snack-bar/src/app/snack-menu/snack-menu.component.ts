@@ -11,15 +11,16 @@ export class SnackMenuComponent implements OnInit {
 
   public foods: Food[] = [];
   public ingredients: Ingredient[] = [];
+  public error: number = -1;
 
   ngOnInit() {
     this.appService.getFoods().subscribe( resp => {
-      resp['content'].forEach(f => {this.foods.push(f)});
-    }, error => console.log("Error on getting foods."));
+      resp['content'].forEach(f => {this.foods.push(f); this.error = 0;});
+    }, error => {console.log("Error on getting foods."); this.error = 1;});
 
     this.appService.getIngredients().subscribe( resp => {
-      resp['content'].forEach(i => {this.ingredients.push(i)});
-    }, error => console.log("Error on getting Ingredients."));
+      resp['content'].forEach(i => {this.ingredients.push(i); this.error = 0;});
+    }, error => {console.log("Error on getting Ingredients."); this.error = 1;});
 
   }
 

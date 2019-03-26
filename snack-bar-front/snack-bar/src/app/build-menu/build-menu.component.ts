@@ -11,6 +11,7 @@ export class BuildMenuComponent implements OnInit {
 
   public ingredients: Ingredient[] = [];
   public ingredientCounters: number[] = [];
+  public error: number = -1;
 
   ngOnInit() {
     this.appService.getIngredients().subscribe(resp => {
@@ -18,7 +19,13 @@ export class BuildMenuComponent implements OnInit {
         this.ingredients.push(i);
         this.ingredientCounters.push(0);
       });
-    }, error => console.log("Error on getting Ingredients."));
+      this.error = 0;
+      this.ingredients.sort((a , b) => {
+        if(a.name > b.name) return 1;
+        if(a.name < b.name) return -1;
+        return 0;
+      });
+    }, error => {console.log("Error on getting Ingredients."); this.error = 1});
   }
 
   public incrementButton(i: number) {
