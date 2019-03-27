@@ -12,6 +12,7 @@ export class BuildMenuComponent implements OnInit {
   public ingredients: Ingredient[] = [];
   public ingredientCounters: number[] = [];
   public error: number = -1;
+  public totalPrice: string = "0.00";
 
   ngOnInit() {
     this.appService.getIngredients().subscribe(resp => {
@@ -37,31 +38,12 @@ export class BuildMenuComponent implements OnInit {
   }
 
   public getPrice() {
-    let hasAlface = false;
-    let hasBacon = false;
-    let meatCount = 0;
-    let meatPrice = 0;
-    let cheeseCount = 0;
-    let cheesePrice = 0;
-    let total = 0;
-    this.ingredients.forEach((ing, i) => {
-      if (ing.name == "Alface" && this.ingredientCounters[i] != 0) hasAlface = true;
-      if (ing.name == "Bacon" && this.ingredientCounters[i] != 0) hasBacon = true;
-      if (ing.is_cheese) {
-        cheeseCount += this.ingredientCounters[i];
-        cheesePrice = ing.price;
-      }
-      if (ing.is_meat) {
-        meatCount += this.ingredientCounters[i];
-        meatPrice = ing.price;
-      }
-      total += ing.price * this.ingredientCounters[i];
-    })
+    let aux = this.ingredients.map(i => i.id);
+    return this.appService.calculatePrice({ingredientsId: aux, ingredientsQty: this.ingredientCounters}).subscribe(resp => this.totalPrice = resp.toFixed(2));
+  }
 
-    total -= (meatCount/3)*meatPrice;
-    total -= (cheeseCount/3)*cheesePrice;
-    if (hasAlface && !hasBacon) total *= 0.9;
-    return total.toFixed(2);
+  public getPriceNoDiscount(){
+    return this.ingredients.reduce((acc,ing, i) => acc + ing.price*this.ingredientCounters[i], 0).toFixed(2);
   }
 
 }

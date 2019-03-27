@@ -19,6 +19,7 @@
         <button class="btn-xs bg-secondary rounded-circle ml-1" (click)="decrementButton(i)">-</button>
       </span>
     </div>
+    <div class="float-right pr-2">Total: {{getPriceNoDiscount()}}</div>
     <div>
       <h4 class="px-2">Promoções:</h4>
       <ul>
@@ -28,8 +29,9 @@
       </ul>
     </div>
     <div class="border-top m-1 text-center">
-      <div>Total: R${{getPrice()}}</div>
-      <button class="bg-secondary rounded">Comprar</button>
+      <button class="bg-secondary rounded" (click)="getPrice()">Calcular Descontos</button>
+      <div>Total: R${{totalPrice}}</div>
+      <button class="bg-secondary rounded">Comprar!</button>
     </div>
     <h5 class="text-secondary text-center">*O pão é por conta da casa!</h5>
   </div>

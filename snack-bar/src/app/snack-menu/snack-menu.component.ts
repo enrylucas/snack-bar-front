@@ -11,12 +11,14 @@ export class SnackMenuComponent implements OnInit {
 
   public foods: Food[] = [];
   public ingredients: Ingredient[] = [];
+  public prices: string[] = [];
   public error: number = -1;
 
   ngOnInit() {
     this.appService.getFoods().subscribe( resp => {
       this.foods = resp;
       this.error = 0;
+      this.foods.forEach((f,i) => this.getPrice(f,i));
     }, error => {console.log("Error on getting foods."); this.error = 1;});
 
     this.appService.getIngredients().subscribe( resp => {
@@ -26,16 +28,11 @@ export class SnackMenuComponent implements OnInit {
 
   }
 
-  public getPrice(food: Food){
-    let sum = 0;
-    food.ingredients.forEach(ing => {
-      this.ingredients.forEach( i => {
-        if(i.name == ing.name){
-          sum += i.price;
-        }
-      })
-    })
-    return sum.toFixed(2);
+  public getPrice(food: Food, i:number){
+    let aux = food.ingredients.map(ing => ing.id);
+    let auxQty = new Array(aux.length);
+    for(let j=0;j<aux.length;j++) auxQty[j] = 1;
+    this.appService.calculatePrice({ingredientsId: aux, ingredientsQty: auxQty}).subscribe(resp => {this.prices[i] = resp.toFixed(2)});
   }
 
 }
