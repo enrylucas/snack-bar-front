@@ -19,4 +19,8 @@ export class AppService {
         return this.http.get<Ingredient[]>(this._url+'/ingredients')
     }
 
+    public calculatePrice(params): Observable<Number>{
+        return this.http.post<Number>(this._url+'/ingredients/build', params)
+    }
+
 }

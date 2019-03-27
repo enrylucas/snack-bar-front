@@ -13,9 +13,6 @@ export class ChoiceViewComponent implements OnInit {
   public error: boolean = false;
 
   ngOnInit() {
-    /* this.appService.getIngredients().subscribe( resp => {
-      resp['content'].forEach(i => {this.ingredients.push(i); this.error = false;});
-    }, error => {console.log("Error on getting ingredients."); this.error = true;}); */
   }
 
 }
