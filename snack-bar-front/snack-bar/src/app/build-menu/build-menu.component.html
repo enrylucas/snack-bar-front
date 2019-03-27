@@ -13,7 +13,7 @@
     <div *ngFor="let ingredient of ingredients, let i = index" class="m-1 p-2 border-secondary border-bottom">
       <span>{{ingredient.name}}</span>
       <span class="float-right">
-          <span class="pr-1">R${{ingredient.price*ingredientCounters[i]}}</span>
+          <span class="pr-1">R${{(ingredient.price*ingredientCounters[i]).toFixed(2)}}</span>
         <button class="btn-xs bg-secondary rounded-circle mr-1" (click)="incrementButton(i)">+</button>
         <span>{{ingredientCounters[i]}}</span>
         <button class="btn-xs bg-secondary rounded-circle ml-1" (click)="decrementButton(i)">-</button>

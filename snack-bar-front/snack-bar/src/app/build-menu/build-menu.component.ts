@@ -15,7 +15,7 @@ export class BuildMenuComponent implements OnInit {
 
   ngOnInit() {
     this.appService.getIngredients().subscribe(resp => {
-      resp['content'].forEach(i => {
+      resp.forEach(i => {
         this.ingredients.push(i);
         this.ingredientCounters.push(0);
       });
@@ -61,8 +61,7 @@ export class BuildMenuComponent implements OnInit {
     total -= (meatCount/3)*meatPrice;
     total -= (cheeseCount/3)*cheesePrice;
     if (hasAlface && !hasBacon) total *= 0.9;
-    total.toPrecision(2);
-    return total;
+    return total.toFixed(2);
   }
 
 }

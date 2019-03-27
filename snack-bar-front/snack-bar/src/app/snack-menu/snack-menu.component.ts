@@ -15,11 +15,13 @@ export class SnackMenuComponent implements OnInit {
 
   ngOnInit() {
     this.appService.getFoods().subscribe( resp => {
-      resp['content'].forEach(f => {this.foods.push(f); this.error = 0;});
+      this.foods = resp;
+      this.error = 0;
     }, error => {console.log("Error on getting foods."); this.error = 1;});
 
     this.appService.getIngredients().subscribe( resp => {
-      resp['content'].forEach(i => {this.ingredients.push(i); this.error = 0;});
+      this.ingredients = resp;
+      this.error = 0;
     }, error => {console.log("Error on getting Ingredients."); this.error = 1;});
 
   }
@@ -33,7 +35,7 @@ export class SnackMenuComponent implements OnInit {
         }
       })
     })
-    return sum;
+    return sum.toFixed(2);
   }
 
 }
