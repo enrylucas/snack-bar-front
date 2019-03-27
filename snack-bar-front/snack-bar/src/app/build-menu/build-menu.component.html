@@ -1,0 +1,44 @@
+<div class="bg-primary border border-secondary border-circle m-2">
+
+    <div *ngIf="error == -1" class="text-center" >
+        <img src="../../assets/loading.gif" alt="loading">
+      </div>
+
+  <div *ngIf="error == 0">
+    <h2 class="text-center text-secondary">Monte seu lanche!</h2>
+    <div class="p-2 mb-2 text-secondary font-weight-bold">
+      <span class="float-left">Ingredientes</span>
+      <span class="float-right">Preço - Unidade(s)</span>
+    </div>
+    <div *ngFor="let ingredient of ingredients, let i = index" class="m-1 p-2 border-secondary border-bottom">
+      <span>{{ingredient.name}}</span>
+      <span class="float-right">
+          <span class="pr-1">R${{(ingredient.price*ingredientCounters[i]).toFixed(2)}}</span>
+        <button class="btn-xs bg-secondary rounded-circle mr-1" (click)="incrementButton(i)">+</button>
+        <span>{{ingredientCounters[i]}}</span>
+        <button class="btn-xs bg-secondary rounded-circle ml-1" (click)="decrementButton(i)">-</button>
+      </span>
+    </div>
+    <div class="float-right pr-2">Total: {{getPriceNoDiscount()}}</div>
+    <div>
+      <h4 class="px-2">Promoções:</h4>
+      <ul>
+        <li>Lanche Light: Ganhe 10% de desconto em lanches com alface, mas sem bacon;</li>
+        <li>Mais Queijo!: A cada 3 unidades de queijo, uma é de graça;</li>
+        <li>Mais Carne!: A cada 3 unidades de carne, uma é de graça.</li>
+      </ul>
+    </div>
+    <div class="border-top m-1 text-center">
+      <button class="bg-secondary rounded" (click)="getPrice()">Calcular Descontos</button>
+      <div>Total: R${{totalPrice}}</div>
+      <button class="bg-secondary rounded">Comprar!</button>
+    </div>
+    <h5 class="text-secondary text-center">*O pão é por conta da casa!</h5>
+  </div>
+
+
+  <div class="m-2 text-center" *ngIf="error == 1">
+    <h1 class="text-secondary">Whoops! Algo de errado aconteceu! Tente novamente mais tarde!</h1>
+  </div>
+</div>
+<button class="bg-secondary btn-lg btn-block my-3" routerLink="/choiceView">Voltar</button>
