@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Setup
 
-This project uses Node.js. To install its dependencies, run the command `npm install` in the package.json directory. After all dependencies are properly installed, run, in the same directory, `ng serve --open`. This will open your browser in `http://localhost:4200/`.
+This project uses Node.js (Download: https://nodejs.org/en/download/). To install its dependencies, run the command `npm install` in the package.json directory. After all dependencies are properly installed, run, in the same directory, `ng serve --open`. This will open your browser in `http://localhost:4200/`.
 
 ## More Info
 
